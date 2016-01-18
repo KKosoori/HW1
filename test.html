@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" href="../Assign/bootstrap/css/bootstrap.css">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script>
+var app = angular.module('myApp', []);
+app.controller('validateCtrl', function($scope) {
+    $scope.search = 'enter here';
+    $scope.ButtonClick = function() {
+
+                if ($scope.search=="cat") {
+
+                    $scope.snapshot =  "../Assign/Catimage.jpg";;
+	               }
+	               else if ($scope.search=="dog")
+	               {
+	                 $scope.snapshot= "../Assign/DogImage.jpg";
+                   }
+
+}
+
+});
+
+
+</script>
+</head>
+<body>
+
+<h2></h2>
+
+<form ng-app="myApp" ng-controller="validateCtrl"
+name="myForm" novalidate>
+
+<p>Animal Name:<br>
+<input type="text" name="search" ng-model="search" required>
+<span style="color:red" ng-show="myForm.search.$dirty && myForm.search.$invalid">
+<span ng-show="myForm.search.$error.required">Enter cat/dog into the search.</span>
+</span>
+</p>
+
+<img  ng-src="{{snapshot}}" alt="">
+
+<p>
+<input name="submit" type="submit" value="Show Picture" class="btn btn-info" ng-click="ButtonClick()"
+ng-disabled="myForm.search.$dirty && myForm.search.$invalid">
+</p>
+ <span ng-bind="Message"></span>
+</form>
+
+
+
+</body>
+</html>
